@@ -1,0 +1,131 @@
+.fashion-page {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.fashion-page {
+  max-width: 1240px;
+}
+
+.fashion-heading h1 {
+  color: #241c20;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.eyebrow {
+  color: #a44c69;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.fashion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 1.5rem;
+}
+
+.fashion-card {
+  overflow: hidden;
+  border: 1px solid #eee5e8;
+  border-radius: 1.15rem;
+  background: #fff;
+  box-shadow: 0 12px 32px rgb(42 21 30 / 7%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.fashion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgb(42 21 30 / 12%);
+}
+
+.fashion-image-button {
+  position: relative;
+  display: grid;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  overflow: hidden;
+  place-items: center;
+  border: 0;
+  background: linear-gradient(135deg, #f7e8ed, #f4f0e9);
+  cursor: pointer;
+}
+
+.fashion-image-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 250ms ease;
+}
+
+.fashion-card:hover .fashion-image-button img {
+  transform: scale(1.04);
+}
+
+.image-placeholder {
+  color: #a44c69;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.2em;
+}
+
+.image-action {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 2rem;
+  background: rgb(255 255 255 / 92%);
+  color: #38242c;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.fashion-card-body {
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.fashion-id,
+.fashion-style {
+  color: #77656c;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.fashion-style {
+  border-radius: 2rem;
+  background: #f7eef1;
+  padding: 0.25rem 0.6rem;
+}
+
+.fashion-card h2 {
+  color: #2c2226;
+}
+
+.fashion-description {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #756a6d;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.fashion-slug {
+  color: #a44c69;
+  font-size: 0.82rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.fashion-slug:hover {
+  text-decoration: underline;
+}
+
+.empty-state {
+  border: 1px dashed #d9c8ce;
+  border-radius: 1rem;
+  background: #fffafc;
+}

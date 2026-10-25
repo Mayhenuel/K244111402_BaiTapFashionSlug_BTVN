@@ -1,0 +1,173 @@
+<div class="container mt-4 mb-4">
+  <h2 class="text-center mb-4">Search Fashion</h2>
+
+  <!-- Search Form -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+
+        <div class="col-md-5">
+          <label class="form-label fw-bold">Tìm kiếm sản phẩm</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="query"
+            (keyup.enter)="searchFashions()"
+            placeholder="Nhập fashion_subject hoặc fashion_detail...">
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label fw-bold">Tìm trong</label>
+          <select
+            class="form-select"
+            [(ngModel)]="searchField"
+            (ngModelChange)="onSearchFieldChange()">
+            <option value="fashion_subject">Fashion Subject</option>
+            <option value="fashion_detail">Fashion Detail</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label fw-bold">Số kết quả</label>
+          <select
+            class="form-select"
+            [(ngModel)]="resultLimit">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="20">20</option>
+            <option [ngValue]="50">50</option>
+          </select>
+        </div>
+
+        <div class="col-md-2 d-flex gap-2">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="searchFashions()">
+            Search
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="query = ''">
+            Reset
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <p *ngIf="errMessage()" class="text-danger">
+    {{ errMessage() }}
+  </p>
+
+  <!-- Result count -->
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0">Search Results</h5>
+    <span class="badge text-bg-primary">
+      {{ results().length }} results
+    </span>
+  </div>
+
+  <!-- Result Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+
+      <thead class="table-dark">
+        <tr>
+          <th>MongoDB ID</th>
+          <th>IdF</th>
+          <th>Slug</th>
+          <th>Style</th>
+          <th>Fashion Subject</th>
+          <th>Fashion Detail</th>
+          <th>Image</th>
+          <th>Jaccard Similarity</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let item of results()"
+          [ngClass]="similarityClass(item.similarity)">
+
+          <td>{{ item.fashion._id }}</td>
+          <td>{{ item.fashion.IdF }}</td>
+          <td>
+            <a [routerLink]="['/fashion', fashionSlug(item.fashion)]">
+              {{ fashionSlug(item.fashion) }}
+            </a>
+          </td>
+          <td>{{ item.fashion.style }}</td>
+          <td>{{ item.fashion.fashion_subject }}</td>
+          <td>{{ item.fashion.fashion_detail }}</td>
+
+          <td>
+            <img
+              *ngIf="item.fashion.fashion_image"
+              [src]="item.fashion.getBase64String()"
+              alt="Fashion image"
+              width="80"
+              height="90"
+              class="img-thumbnail"
+              style="object-fit: contain">
+
+            <span
+              *ngIf="!item.fashion.fashion_image"
+              class="text-muted">
+              No image
+            </span>
+          </td>
+
+          <td class="text-center fw-bold">
+            {{ item.similarity | number:'1.3-3' }}
+          </td>
+
+        </tr>
+
+        <tr *ngIf="hasSearched() && results().length === 0">
+          <td colspan="8" class="text-center text-muted py-4">
+            Không tìm thấy sản phẩm phù hợp.
+          </td>
+        </tr>
+
+        <tr *ngIf="!hasSearched()">
+          <td colspan="8" class="text-center text-muted py-4">
+            Nhập từ khóa và nhấn Search để tìm sản phẩm.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Similarity Legend -->
+  <div class="d-flex flex-wrap gap-3 mt-3">
+    <span>
+      <span
+        class="d-inline-block border rounded me-1"
+        style="width:18px;height:18px;background-color:#f8c8dc;">
+      </span>
+      0.75 - &lt; 1.00
+    </span>
+
+    <span>
+      <span
+        class="d-inline-block border rounded me-1"
+        style="width:18px;height:18px;background-color:#fff3cd;">
+      </span>
+      0.50 - &lt;0.75
+    </span>
+
+    <span>
+      <span
+        class="d-inline-block border rounded me-1"
+        style="width:18px;height:18px;background-color:#d6d8db;">
+      </span>
+      &lt;0.50
+    </span>
+  </div>
+</div>

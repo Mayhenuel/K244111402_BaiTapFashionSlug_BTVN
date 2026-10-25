@@ -1,0 +1,22 @@
+/* Base style for the button */
+.btn {
+  padding: 10px 20px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* Class applied when button is active */
+.btn-active {
+  background-color: #f0f0f0;
+  border-color: red;
+}
+
+/* Class applied when saved successfully */
+.btn-saved {
+  background-color: green;
+  color: white;
+  border-color: darkgreen;
+}

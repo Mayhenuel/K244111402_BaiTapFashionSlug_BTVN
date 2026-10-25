@@ -1,0 +1,48 @@
+
+<main class="fashion-detail-page container py-5">
+  <a routerLink="/fashion-list" class="back-link">← Quay lại danh sách</a>
+
+  <section class="detail-search mt-4">
+    <p class="eyebrow mb-2">FASHION LOOKBOOK</p>
+    <h1 class="mb-2">Chi tiết sản phẩm</h1>
+    <p class="text-secondary mb-4">Tra cứu nhanh bằng IdF hoặc slug Fashion.</p>
+    <div class="input-group detail-search-input">
+      <input
+        #fashionIdentity
+        type="text"
+        class="form-control"
+        placeholder="Ví dụ: ao-dai-truyen-thong-p12"
+        aria-label="Nhập IdF hoặc slug Fashion"
+        (keyup.enter)="searchFashion(fashionIdentity.value)">
+      <button class="btn btn-dark px-4" type="button" (click)="searchFashion(fashionIdentity.value)">
+        Tra cứu
+      </button>
+    </div>
+  </section>
+
+  @if (errMessage()) {
+    <div class="alert alert-warning mt-4" role="status">{{ errMessage() }}</div>
+  }
+
+  @if (fashion(); as item) {
+    <article class="detail-card mt-4">
+      <div class="detail-photo">
+        @if (item.fashion_image) {
+          <img [src]="item.getBase64String()" [alt]="item.fashion_subject || 'Fashion'" />
+        } @else {
+          <span class="image-placeholder">FASHION</span>
+        }
+      </div>
+      <div class="detail-copy">
+        <span class="detail-id">IDF {{ item.IdF }}</span>
+        <p class="detail-style mt-3 mb-2">{{ item.style || 'COLLECTION' }}</p>
+        <h2>{{ item.fashion_subject || 'Fashion chưa đặt tên' }}</h2>
+        <p class="detail-description">{{ item.fashion_detail || 'Chưa có mô tả cho sản phẩm này.' }}</p>
+        <div class="slug-box">
+          <span>SLUG</span>
+          <strong>{{ fashionSlug(item) }}</strong>
+        </div>
+      </div>
+    </article>
+  }
+</main>

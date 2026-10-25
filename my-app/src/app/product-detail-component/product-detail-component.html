@@ -1,0 +1,38 @@
+<p>product-detail-component works!</p>
+<p>
+  {{errMessage()}}
+</p>
+<table border="1">
+  @if (product()!=null){
+  <tr>
+    <td>Product ID:</td>
+    <td>{{product()?.id}}</td>
+  </tr>
+  <tr>
+    <td>Product Name:</td>
+    <td>{{product()?.name}}</td>
+  </tr>
+  <tr>
+    <td>Price:</td>
+    <td>{{product()?.price}}</td>
+  </tr>
+  <tr>
+    <td>Image:</td>
+    <td>
+      <img
+        [src]="product()?.image"
+        [alt]="product()?.name"
+        width="100"
+      >
+    </td>
+  </tr>
+  }
+  @else
+  {
+    <tr>
+      <td colspan="2">Cannot find the product</td>
+    </tr>
+  }
+</table>
+<button (click)="goBack()">Go Back</button>
+

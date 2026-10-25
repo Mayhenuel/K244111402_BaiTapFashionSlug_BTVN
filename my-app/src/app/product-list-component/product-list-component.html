@@ -1,0 +1,26 @@
+<p>product-list-component works!</p>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+    @for (p of products; track $index) {
+        <tr>
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td><img [src]="p.image" [alt]="p.name" width="100"></td>
+        </tr>
+    }
+    @empty {
+        <tr>
+            <td colspan="4">No products available.</td>
+        </tr>
+    }
+</tbody>
+</table>

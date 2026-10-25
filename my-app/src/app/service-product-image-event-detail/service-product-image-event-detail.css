@@ -1,0 +1,25 @@
+.btn {
+    width: 110px;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    background-color: #aa0800;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 8px rgba(168, 0, 0, 0.25);
+    margin-bottom: 20px;
+}
+
+.btn:hover {
+    background-color: #052d01;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(168, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(168, 0, 0, 0.2);
+}

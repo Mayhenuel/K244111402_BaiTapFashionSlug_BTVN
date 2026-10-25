@@ -1,0 +1,52 @@
+
+<p>{{ errMessage() }}</p>
+
+<h3 class="text-center text-white bg-dark p-3">Product List</h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let p of products()">
+      <div class="card">
+        <div class="img-container">
+          <div class="d-flex justify-content-between align-items-center p-2 first">
+            <span class="percent">-25%</span>
+            <span class="wishlist">
+              <i class="bi bi-heart-fill"></i>
+            </span>
+          </div>
+
+          <div class="text-center">
+            <img [src]="p.image" class="img-scale" />
+          </div>
+        </div>
+
+        <div class="product-detail-container">
+          <div class="d-flex justify-content-between align-items-center">
+            <h6 class="mb-0 text-truncate">{{p.title}}</h6>
+          </div>
+
+          <div>
+            <span class="text-danger fw-bold">${{p.price}}</span>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <div class="ratings">
+              <i class="bi bi-star-fill me-1"></i>
+              <span>{{p.rating.rate}}</span>
+            </div>
+
+            <div class="count">
+              Count: {{p.rating.count}}
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <button class="btn btn-warning d-block w-100 text-white fw-bold">
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

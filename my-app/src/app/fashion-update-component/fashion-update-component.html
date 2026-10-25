@@ -1,0 +1,152 @@
+<main class="fashion-editor container py-5">
+  <a class="editor-back-link" routerLink="/fashion-list">
+    <span aria-hidden="true">←</span>
+    Danh sách Fashion
+  </a>
+
+  <header class="editor-header">
+    <div>
+      <h1> <em>Update Fashion</em></h1>
+      <p class="editor-intro">Cập nhật thông tin để bộ sưu tập của bạn luôn chỉn chu và nổi bật.</p>
+    </div>
+  </header>
+
+  @if (errMessage) {
+    <div class="editor-alert" role="alert">
+      <span class="alert-icon" aria-hidden="true">!</span>
+      <span>{{ errMessage }}</span>
+    </div>
+  }
+
+  <section class="lookup-card">
+    <div class="lookup-icon" aria-hidden="true">⌕</div>
+    <div class="lookup-copy">
+      <h2>Tìm sản phẩm cần chỉnh sửa</h2>
+      <p>Nhập MongoDB ID để tải thông tin Fashion.</p>
+    </div>
+    <div class="lookup-controls">
+      <label class="visually-hidden" for="mongo-id">MongoDB ID</label>
+      <input
+        type="text"
+        class="form-control"
+        name="_id"
+        id="mongo-id"
+        placeholder="Dán MongoDB ID tại đây"
+        [(ngModel)]="fashion._id"
+        (keyup.enter)="loadFashion(fashion._id)">
+      <button type="button" class="btn lookup-button" (click)="loadFashion(fashion._id)">
+        Search <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </section>
+
+  @if (fashion.IdF !== null) {
+    <section class="editor-layout" aria-label="Thông tin Fashion">
+      <div class="form-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="editor-eyebrow mb-2">THÔNG TIN SẢN PHẨM</p>
+            <h2>Chi tiết bộ sưu tập</h2>
+          </div>
+          <span class="idf-badge">IDF <strong>{{ fashion.IdF }}</strong></span>
+        </div>
+
+        <div class="field-grid">
+          <div class="editor-field">
+            <label for="fashion_subject">Tên Fashion <span>*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              name="fashion_subject"
+              id="fashion_subject"
+              placeholder="Ví dụ: Áo dài mùa xuân"
+              [(ngModel)]="fashion.fashion_subject">
+          </div>
+
+          <div class="editor-field">
+            <label for="style">Phong cách</label>
+            <input
+              type="text"
+              class="form-control"
+              name="style"
+              id="style"
+              placeholder="Ví dụ: Thanh lịch"
+              [(ngModel)]="fashion.style">
+          </div>
+
+          <div class="editor-field field-full">
+            <label for="fashion_detail">Mô tả chi tiết</label>
+            <textarea
+              class="form-control"
+              name="fashion_detail"
+              id="fashion_detail"
+              rows="6"
+              placeholder="Chia sẻ thêm về kiểu dáng, chất liệu và cảm hứng thiết kế..."
+              [(ngModel)]="fashion.fashion_detail"></textarea>
+            <span class="field-hint">Mô tả rõ ràng giúp khách hàng hiểu hơn về sản phẩm.</span>
+          </div>
+        </div>
+
+        <div class="slug-preview">
+          <div class="slug-icon" aria-hidden="true">↗</div>
+          <div class="slug-copy">
+            <span>ĐƯỜNG DẪN FASHION</span>
+            <strong>{{ fashionSlug() }}</strong>
+          </div>
+          <a [routerLink]="['/fashion', fashionSlug()]" aria-label="Xem trang chi tiết Fashion">
+            Xem trang
+          </a>
+        </div>
+
+        <div class="editor-actions">
+          <p><span aria-hidden="true">✓</span> IdF được giữ nguyên khi cập nhật</p>
+          <button type="button" class="btn save-button" (click)="putFashion()">
+            <span aria-hidden="true">✓</span>
+            Lưu thay đổi
+          </button>
+        </div>
+      </div>
+
+      <aside class="image-panel">
+        <div class="panel-heading image-heading">
+          <div>
+            <p class="editor-eyebrow mb-2">HÌNH ẢNH</p>
+            <h2>Ảnh đại diện</h2>
+          </div>
+        </div>
+
+        <div class="image-frame">
+          @if (fashion.fashion_image) {
+            <img [src]="fashion.getBase64String()" [alt]="fashion.fashion_subject || 'Ảnh Fashion'">
+          } @else {
+            <div class="image-empty">
+              <span aria-hidden="true">✳</span>
+              <strong>Chưa có hình ảnh</strong>
+              <small>Chọn ảnh để xem trước tại đây</small>
+            </div>
+          }
+          <span class="image-frame-label">FASHION / {{ fashion.IdF }}</span>
+        </div>
+
+        <label class="upload-button" for="fashion_image">
+          <span aria-hidden="true">＋</span>
+          {{ fashion.fashion_image ? 'Thay đổi hình ảnh' : 'Thêm hình ảnh' }}
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          class="visually-hidden"
+          name="fashion_image"
+          id="fashion_image"
+          (change)="onFileSelected($event, fashion)">
+        <p class="image-hint">Định dạng ảnh phổ biến · Hình ảnh sẽ được lưu cùng Fashion.</p>
+      </aside>
+    </section>
+  } @else {
+    <section class="editor-empty">
+      <div class="empty-symbol" aria-hidden="true">✦</div>
+      <h2>Sẵn sàng làm mới bộ sưu tập?</h2>
+      <p>Nhập MongoDB ID phía trên để tải thông tin Fashion và bắt đầu chỉnh sửa.</p>
+    </section>
+  }
+</main>

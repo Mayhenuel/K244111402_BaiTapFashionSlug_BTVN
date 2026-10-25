@@ -1,0 +1,20 @@
+.table1 {
+    width: 60%;
+    margin: 20px auto;
+}
+.table1 th,
+.table1 td {
+    border: 1px solid #555;
+}
+.table1 th {
+    background-color: #ddd;
+    font-weight: bold;
+}
+.table1 img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+h2 {
+    text-align: center;
+}

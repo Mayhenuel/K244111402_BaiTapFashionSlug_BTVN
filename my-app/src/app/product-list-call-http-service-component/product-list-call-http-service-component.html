@@ -1,0 +1,44 @@
+<p>product-list-call-http-service-component works!</p>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (p of products(); track p.id) {
+      <tr>
+        <td>{{ p.id }}</td>
+
+        <td>
+          <a routerLink="/products/{{ p.id }}" target="_blank">
+            {{ p.name }}
+          </a>
+        </td>
+
+        <td>{{ p.price }}</td>
+
+        <td>
+          <a routerLink="/products/{{ p.id }}" target="_blank">
+            <img
+              [src]="p.image"
+              [alt]="p.name"
+              width="100"
+            >
+          </a>
+        </td>
+      </tr>
+    }
+
+    @empty {
+      <tr>
+        <td colspan="4">No products available.</td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+<p>{{errMessage()}}</p>
+Book Id: <input type="text" #bookId> <button (click)="searchBook(bookId.value)">Search</button>
+<table>
+  @if (book()!=null){
+    <tr>
+        <td>Book Id:</td>
+        <td>{{book()?.BookId}}</td>
+    </tr>
+    <tr>
+        <td>Book Name:</td>
+        <td>{{book()?.BookName}}</td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td>{{book()?.Price}} </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <img src="{{server_images_link}}/{{book()?.Image}}">
+        </td>
+    </tr>
+  }@else {
+    <tr><td>Not found Book</td></tr>
+  }
+</table>
+
+
