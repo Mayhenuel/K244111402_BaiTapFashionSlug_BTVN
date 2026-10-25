@@ -1,0 +1,54 @@
+<div class="container mt-4" style="max-width: 500px; border: 1px solid #ddd;
+padding: 20px; border-radius: 8px;">
+  <!-- Sử dụng Pipe uppercase cho tiêu đề-->
+  <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+    <h3 class="text-center mb-4">{{ "Đăng ký khóa học" | uppercase }}</h3>
+    <!-- Tên -->
+    <div class="mb-3">
+      <label class="form-label fw-bold" for="name">Tên:</label>
+      <input type="text" id="name" class="form-control"
+             formControlName="name" placeholder="Nhập tên">
+    <div class="text-danger" *ngIf="regForm.get('name')?.invalid && regForm.get('name')?.touched">
+      <small>Tên phải có ít nhất 2 ký tự.</small>
+    </div>
+    <div class="text-danger" *ngIf="regForm.get('name')?.errors?.['nameNoMatch']">
+      <small>Tên không được chứa ký tự đặc biệt.</small>
+    </div>
+    </div>
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="form-label fw-bold">Email:</label>
+      <input type="email" class="form-control"
+             formControlName="email" placeholder="test@gmail.com">
+      <div class="text-danger" *ngIf="regForm.get('email')?.invalid && regForm.get('email')?.touched">
+        <small>Vui lòng nhập email hợp lệ.</small>
+      </div>
+    </div>
+    <!-- Mật khẩu -->
+    <div class="mb-3">
+      <label class="form-label fw-bold">Mật khẩu:</label>
+      <input type="password" class="form-control" formControlName="password">
+      <div class="text-danger" *ngIf="regForm.get('password')?.invalid && regForm.get('password')?.touched">
+        <small>Mật khẩu phải có ít nhất 8 ký tự.</small>
+        <div class="text-danger" *ngIf="regForm.get('password')?.errors?.['passwordStrength']">
+          <small>Mật khẩu phải chứa ít nhất một ký tự viết hoa, một ký tự viết thường, một số và một ký tự đặc biệt.</small>
+        </div>
+      </div>
+    </div>
+    <!-- Nhập lại mật khẩu (confirmPass) -->
+    <div class="mb-3">
+      <label class="form-label fw-bold">Nhập lại mật khẩu:</label>
+      <input type="password" class="form-control" formControlName="confirmPass">
+      <div class="text-danger" *ngIf="regForm.get('confirmPass')?.invalid && regForm.get('confirmPass')?.touched">
+        <small>Mật khẩu xác nhận không khớp.</small>
+      </div>
+    </div>
+    <!-- Nút bấm -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <button type="submit" class="btn btn-primary px-4">Đăng ký</button>
+      <button type="button" class="btn btn-secondary px-3" (click)="setDefaultValues()">Default values</button>
+    </div>
+  </form>
+</div>
+
+

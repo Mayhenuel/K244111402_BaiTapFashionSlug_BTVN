@@ -1,0 +1,28 @@
+{{errMessage()}}
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Fashion Subject</td>
+        <td>Fashion Detail</td>
+        <td>Image</td>
+        <td>Actions</td>
+    </tr>
+    <tbody>
+      @for (fashion of fashions();track fashion._id)
+      {
+        <tr>
+            <td>{{fashion._id}}</td>
+            <td>{{fashion.fashion_subject}}</td>
+            <td>{{fashion.fashion_detail}} </td>
+            <td>
+                <img src="{{fashion.fashion_image}}" width="100px" height="100px">
+            </td>
+            <td>
+                <button (click)="deleteFashion(fashion._id)">Delete</button>
+            </td>
+        </tr>
+      }
+    </tbody>
+</table>
+
+

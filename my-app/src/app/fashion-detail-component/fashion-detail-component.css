@@ -1,0 +1,141 @@
+.fashion-detail-page {
+  max-width: 1050px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-link {
+  color: #8c4059;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.eyebrow {
+  color: #a44c69;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.detail-search h1 {
+  color: #241c20;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.detail-search-input {
+  max-width: 650px;
+}
+
+.detail-search-input .form-control,
+.detail-search-input .btn {
+  min-height: 3rem;
+  border-radius: 0.7rem;
+}
+
+.detail-search-input .form-control {
+  margin-right: 0.5rem;
+}
+
+.detail-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+  overflow: hidden;
+  border: 1px solid #eee5e8;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 16px 42px rgb(42 21 30 / 9%);
+}
+
+.detail-photo {
+  display: grid;
+  min-height: 360px;
+  place-items: center;
+  background: linear-gradient(135deg, #f7e8ed, #f4f0e9);
+}
+
+.detail-photo img {
+  width: 100%;
+  height: 100%;
+  max-height: 560px;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  color: #a44c69;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+}
+
+.detail-copy {
+  align-self: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.detail-id {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border-radius: 2rem;
+  background: #f7eef1;
+  color: #8c4059;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.detail-style {
+  color: #a44c69;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.detail-copy h2 {
+  color: #2c2226;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.detail-description {
+  color: #756a6d;
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+.slug-box {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1.75rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.8rem;
+  background: #fbf7f8;
+  overflow-wrap: anywhere;
+}
+
+.slug-box span {
+  color: #887980;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.slug-box strong {
+  color: #8c4059;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 767px) {
+  .detail-card {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-photo {
+    min-height: 260px;
+    max-height: 420px;
+  }
+}

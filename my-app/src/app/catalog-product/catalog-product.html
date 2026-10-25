@@ -1,0 +1,38 @@
+<h2>Danh sách sản phẩm</h2>
+<table border="1" class="table1">
+    <ng-container *ngFor="let c of categories">
+        <tr>
+            <td colspan="2">
+                Mã Danh Mục:
+            </td>
+            <td colspan="2">
+                Tên Danh Mục:
+            </td>
+        </tr>
+        <tr> 
+            <td colspan="2"> {{ c.Cateid }} </td> 
+            <td colspan="2"> {{ c.CateName }} </td> 
+        </tr>
+        <tr>
+            <th>Mã Sản Phẩm</th>
+            <th>Tên Sản Phẩm</th>
+            <th>Giá Sản Phẩm</th>
+            <th>Picture</th>
+        </tr>
+<!-- ngFor -->
+        <tr *ngFor="let p of c.Products">
+            <td>
+                {{ p.ProductId }}
+            </td>
+            <td>
+                {{ p.ProductName }}
+            </td>
+            <td>
+                {{ p.Price }}
+            </td>
+            <td>
+                <img [src]="p.Image" width="50">
+            </td>
+        </tr>
+    </ng-container>
+</table>

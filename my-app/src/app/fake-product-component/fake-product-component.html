@@ -1,0 +1,31 @@
+{{errMessage()}}
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>title</th>
+            <th>price</th>
+            <th>description</th>
+            <th>category</th>
+            <th>image</th>
+            <th>rating</th>
+        </tr>
+    </thead>
+    <tbody>
+      @for (p of products(); track p) {
+        <tr>
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.description}}</td>
+            <td>{{p.category}}</td>
+            <td><img src="{{p.image}}" width="250" height="250" ></td>
+            <td>{{p.rating.rate}}</td>
+        </tr>
+      }@empty {
+      <tr>
+        <td colspan="7">No products available.</td>
+      </tr>
+    }
+    </tbody>
+</table>

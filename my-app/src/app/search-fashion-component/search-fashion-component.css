@@ -1,0 +1,19 @@
+.similarity-high > td {
+  background-color: #f8c8dc;
+}
+
+.similarity-medium > td {
+  background-color: #fff3cd;
+}
+
+.similarity-low > td {
+  background-color: #d6d8db;
+}
+.table a {
+  color: #8c4059;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.container {
+  font-family: Arial, Helvetica, sans-serif;
+}

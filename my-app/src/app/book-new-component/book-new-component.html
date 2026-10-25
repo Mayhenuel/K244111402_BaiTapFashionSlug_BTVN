@@ -1,0 +1,62 @@
+<p>{{errMessage()}}</p>
+<table>
+    <tr>
+        <td>Book Id:</td>
+        <td>
+            <input type="text" class="form-control" #name="ngModel" name="BookId" id="BookId"
+            placeholder="Enter Book Id" [(ngModel)]="book.BookId"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Book Name:</td>
+        <td>
+            <input type="text" class="form-control" #name="ngModel" name="BookName" id="BookName"
+            placeholder="Enter Book Name" [(ngModel)]="book.BookName"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td>
+            <input type="text" class="form-control" #name="ngModel" name="BookPrice" id="BookPrice"
+            placeholder="Enter Price" [(ngModel)]="book.Price"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Image:</td>
+        <td>
+            <input type="file" class="form-control" name="Image" id="Image" placeholder="Pick image"
+            (change)="onFileSelected($event)"/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button (click)="postBook()">Submit</button>
+        </td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td>BookId</td>
+        <td>BookName</td>
+        <td>Price</td>
+        <td>Image</td>
+    </tr>
+    <tbody>
+        @for (book of books();track book.BookId){
+        <tr>
+            <td>{{book.BookId}}</td>
+            <td>{{book.BookName}}</td>
+            <td>{{book.Price}} </td>
+            <td>
+                <img src="{{server_images_link}}/{{book.Image}}" width="50px" height="50px">
+            </td>
+        </tr>
+      }@empty{
+        <tr>
+          <td colspan="4">Not found books</td>
+        </tr>
+      }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,54 @@
+<main class="fashion-page container py-5">
+  <header class="fashion-heading d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div>
+      <p class="eyebrow mb-2">BỘ SƯU TẬP</p>
+      <h1 class="mb-2">Khám phá phong cách</h1>
+      <p class="text-secondary mb-0">Chọn một slug để xem chính xác thông tin chi tiết của Fashion.</p>
+    </div>
+    <a class="btn btn-dark rounded-pill px-4" routerLink="/fashion-new">Thêm Fashion</a>
+  </header>
+
+  @if (errMessage()) {
+    <div class="alert alert-danger" role="alert">{{ errMessage() }}</div>
+  }
+
+  @if (fashions().length === 0 && !errMessage()) {
+    <div class="empty-state text-center p-5">
+      <h2 class="h5">Chưa có Fashion</h2>
+      <p class="text-secondary mb-0">Danh sách sẽ hiển thị tại đây sau khi có dữ liệu.</p>
+    </div>
+  } @else {
+    <section class="fashion-grid" aria-label="Danh sách Fashion">
+      @for (fashion of fashions(); track fashion.IdF ?? fashion._id) {
+        <article class="fashion-card">
+          <button
+            type="button"
+            class="fashion-image-button"
+            [attr.aria-label]="'Xem ' + fashion.fashion_subject"
+            (click)="viewFashion(fashion)">
+            @if (fashion.fashion_image) {
+              <img [src]="fashion.getBase64String()" [alt]="fashion.fashion_subject || 'Fashion'" />
+            } @else {
+              <span class="image-placeholder">FASHION</span>
+            }
+            <span class="image-action">Xem chi tiết <span aria-hidden="true">↗</span></span>
+          </button>
+          <div class="fashion-card-body">
+            <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+              <span class="fashion-id">IDF {{ fashion.IdF ?? '—' }}</span>
+              <span class="fashion-style">{{ fashion.style || 'Collection' }}</span>
+            </div>
+            <h2 class="h5 mb-2">{{ fashion.fashion_subject || 'Fashion chưa đặt tên' }}</h2>
+            <p class="fashion-description mb-3">{{ fashion.fashion_detail || 'Chưa có mô tả.' }}</p>
+            <a
+              class="fashion-slug"
+              [routerLink]="['/fashion', fashionSlug(fashion)]"
+              (click)="$event.stopPropagation()">
+              {{ fashionSlug(fashion) }}
+            </a>
+          </div>
+        </article>
+      }
+    </section>
+  }
+</main>

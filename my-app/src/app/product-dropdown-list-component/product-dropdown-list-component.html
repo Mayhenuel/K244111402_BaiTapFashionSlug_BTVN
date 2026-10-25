@@ -1,0 +1,10 @@
+<p>product-dropdown-list-component works!</p>
+<select>
+    <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
+</select>
+<h3>Way 2:</h3>
+<select>
+    @for (p of products; track $index){
+        <option [value]="p.id">{{ p.name }}</option>
+    }
+</select>
